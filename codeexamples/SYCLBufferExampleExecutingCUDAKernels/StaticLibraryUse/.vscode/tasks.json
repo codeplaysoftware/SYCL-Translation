@@ -1,0 +1,61 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "CUDAInteropSYCLSimple Debug C/C++: Intel icpx build active file",
+			"command": "/opt/intel/oneapi/compiler/latest/linux/bin/icpx",
+			"args": [
+				"-fsycl",
+				"-fsycl-targets=nvptx64-nvidia-cuda", "--cuda-gpu-arch=sm_75",
+				"-Xsycl-target-backend=nvptx64-nvidia-cuda", "--cuda-gpu-arch=sm_75",
+				"-fdiagnostics-color=always",
+				"-I${workspaceFolder}/../StaticLibraryMakeCUDAKernel/src",
+				"-I/usr/local/cuda/include",
+				"-L/usr/local/cuda/lib64",
+				"-lcudart",
+				"-g",
+				"-O0",
+				"${workspaceFolder}/src/*.cpp",
+				"${workspaceFolder}/../StaticLibraryMakeCUDAKernel/bin/libStaticLibOfFnsCUDAKernel_d.a",
+				"-o",
+				"${workspaceFolder}/bin/${config:programName}_d"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: /opt/intel/oneapi/compiler/latest/linux/bin/icpx"
+		},
+		{
+			"type": "cppbuild",
+			"label": "CUDAInteropSYCLSimple Release C/C++: Intel icpx build active file",
+			"command": "/opt/intel/oneapi/compiler/latest/linux/bin/icpx",
+			"args": [
+				"-fsycl",
+				"-fsycl-targets=nvptx64-nvidia-cuda", "--cuda-gpu-arch=sm_75",
+				"-Xsycl-target-backend=nvptx64-nvidia-cuda", "--cuda-gpu-arch=sm_75",
+				"-I${workspaceFolder}/../StaticLibraryMakeCUDAKernel/src",
+				"-I/usr/local/cuda/include",
+				"-L/usr/local/cuda/lib64",
+				"-lcudart",
+				"-DNDEBUG",
+                "${workspaceFolder}/src/*.cpp",
+				"${workspaceFolder}/../StaticLibraryMakeCUDAKernel/bin/libStaticLibOfFnsCUDAKernel_d.a",
+				"-o",
+				"${workspaceFolder}/bin/${config:programName}"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: /opt/intel/oneapi/compiler/latest/linux/bin/icpx"
+		}
+	]
+}

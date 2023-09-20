@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../VSCodeStaticLibraryMake/src",
+                "${workspaceFolder}/../VSCodeStaticLibraryMakeCUDAKernel/src",
+                "/usr/local/cuda/include"
+            ],
+            "defines": [],
+            "compilerPath": "/opt/intel/oneapi/compiler/latest/linux/bin/icpx",
+            "compilerArgs": [ "-fsycl" ],
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}

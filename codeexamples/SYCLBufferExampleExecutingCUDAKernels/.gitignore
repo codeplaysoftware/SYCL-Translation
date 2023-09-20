@@ -1,0 +1,4 @@
+StaticLibraryMakeCUDAKernel/bin/libStaticLibOfFnsCUDAKernel_d_tmp.o
+StaticLibraryMakeCUDAKernel/bin/libStaticLibOfFnsCUDAKernel_d.a
+StaticLibraryMakeCUDAKernel/bin/libStaticLibOfFnsCUDAKernel_d.o
+StaticLibraryUse/bin/CUDAInteropSYCLSimple_d
