@@ -28,4 +28,4 @@ NVIDIA CUDA Toolkit 12.0 \
 NVIDIA CUDA Samples Common directory for CUDA helper include files (/cuda-samples-nvidia/Common) \
 Compilers: NVIDIA's nvcc and Intel's icpx \
 Target device: NVIDIA GTX2060 \
-Development IDE: Microsoft VSCode + extensions: Microsoft C/C++ pack, NVIDIA Nsight
+Development IDE: Microsoft VSCode + extensions: Microsoft C/C++ pack.
