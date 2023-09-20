@@ -1,10 +1,10 @@
-# VSCodeMakeStaticLibraryCUDAkernelsExampleDXTC
+# SYCL program using a static library of CUDA kernels
 
 This project shows how to call a CUDA __global__ kernel from within a SYCL program using one task graph. The global kernel makes further to kernel calls to CUDA __device__ functions. The program is version of the original CUDA sample **dxtc** found in the NVIDIA CUDA samples github repository [here](https://github.com/NVIDIA/cuda-samples/tree/master/Samples/5_Domain_Specific/dxtc).
 
 DXTC stands for High Quality DirectX Compressor. This example uses the same framework (a SYCL framework) and CUDA kernel functions as the original.
 
-This SYCL example is based on the SYCL USM framework model. Refer to the Codeplay CUDA interopability with SYCL example **VSCodeMakeStaticLibraryCUDAkernels** to see how a SYCL buffer framework model is used. Unlike the **VSCodeMakeStaticLibraryCUDAkernels** example this example does not mix SYCL kernel execution with CUDA kernels in the same task graph (the one queue) to act on one set of data to create some new data or results.
+This SYCL example is based on the SYCL USM framework model. Refer to the Codeplay CUDA interopability with SYCL example **SYCLBufferUsingStaticLibraryCUDAkernels** to see how a SYCL buffer framework model is used. Unlike the **SYCLBufferUsingStaticLibraryCUDAkernels** example this example does not mix SYCL kernel execution with CUDA kernels in the same task graph (the one queue) to act on one set of data to create some new data or results.
 
 ## CUDA interopability approach with SYCL
 All the CUDA kernels are put in a static library. The global kernel is wrapped by a C++ Facade function. This library is compiled with the NVIDIA compiler.
