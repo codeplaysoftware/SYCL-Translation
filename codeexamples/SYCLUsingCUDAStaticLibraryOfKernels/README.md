@@ -1,4 +1,4 @@
-# SYCL program using a static library of CUDA kernels
+# A SYCL program executing CUDA kernels
 
 This project shows how to call a CUDA __global__ kernel from within a SYCL program using one task graph. The global kernel makes further to kernel calls to CUDA __device__ functions. The program is version of the original CUDA sample **dxtc** found in the NVIDIA CUDA samples github repository [here](https://github.com/NVIDIA/cuda-samples/tree/master/Samples/5_Domain_Specific/dxtc).
 
