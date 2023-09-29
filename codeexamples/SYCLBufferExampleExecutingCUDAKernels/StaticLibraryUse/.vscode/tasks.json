@@ -7,7 +7,7 @@
 			"command": "/opt/intel/oneapi/compiler/latest/linux/bin/icpx",
 			"args": [
 				"-fsycl",
-				"-fsycl-targets=nvptx64-nvidia-cuda", "--cuda-gpu-arch=sm_75",
+				"-fsycl-targets=nvptx64-nvidia-cuda",
 				"-Xsycl-target-backend=nvptx64-nvidia-cuda", "--cuda-gpu-arch=sm_75",
 				"-fdiagnostics-color=always",
 				"-I${workspaceFolder}/../StaticLibraryMakeCUDAKernel/src",
@@ -36,7 +36,7 @@
 			"command": "/opt/intel/oneapi/compiler/latest/linux/bin/icpx",
 			"args": [
 				"-fsycl",
-				"-fsycl-targets=nvptx64-nvidia-cuda", "--cuda-gpu-arch=sm_75",
+				"-fsycl-targets=nvptx64-nvidia-cuda",
 				"-Xsycl-target-backend=nvptx64-nvidia-cuda", "--cuda-gpu-arch=sm_75",
 				"-I${workspaceFolder}/../StaticLibraryMakeCUDAKernel/src",
 				"-I/usr/local/cuda/include",
