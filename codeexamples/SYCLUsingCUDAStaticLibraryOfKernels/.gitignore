@@ -1,4 +1,2 @@
 *.o
 *.a
-StaticLibrarySYCLUsesCUDAKernels/bin/DXTC*
-StaticLibrarySYCLUsesCUDAKernels/.vscode/settings.json
