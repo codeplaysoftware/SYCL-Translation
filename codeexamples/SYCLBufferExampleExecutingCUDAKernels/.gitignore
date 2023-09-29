@@ -1,4 +1,5 @@
-StaticLibraryMakeCUDAKernel/bin/libStaticLibOfFnsCUDAKernel_d_tmp.o
-StaticLibraryMakeCUDAKernel/bin/libStaticLibOfFnsCUDAKernel_d.a
-StaticLibraryMakeCUDAKernel/bin/libStaticLibOfFnsCUDAKernel_d.o
-StaticLibraryUse/bin/CUDAInteropSYCLSimple_d
+*.a
+*.o
+StaticLibraryMakeCUDAKernel/.vscode/settings.json
+StaticLibraryUse/.vscode/settings.json
+StaticLibraryUse/bin/CUDAInteropSYCLSimple*
