@@ -2,4 +2,6 @@
 *.a
 StaticLibrarySYCLUsesCUDAKernels/bin/DXTC*
 StaticLibrarySYCLUsesCUDAKernels/.vscode/settings.json
+StaticLibrarySYCLUsesCUDAKernels/.vscode/c_cpp_properties.json
 StaticLibrarySYCLBuildCUDAKernels/.vscode/settings.json
+StaticLibrarySYCLBuildCUDAKernels/.vscode/c_cpp_properties.json
