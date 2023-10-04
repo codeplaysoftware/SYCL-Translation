@@ -11,13 +11,16 @@ All the CUDA kernels are put in a static library. The global kernel is wrapped b
 
 The static library is linked to a SYCL project. The Facade wrapper function is called from within a SYCL host_task() fucntion, which in turn is enqueued in a SYCL queue.
 
+## Microsoft's Visual Studio Code IDE (VSCode)
+VSCode orgranises each and every individual C++ project with a set of settings and configuration files. These files are contained in a hidden directory named **.vscode**. The configuration files **tasks.json** and **launch.json** are used to configure the building (generally compiling) of the project  followed by the debugging the program respectively. The other files like **settings.json** and **c_cpp_properties.json** are used by VSCode to inform it of your preferences and development environment. To learn more about how to use VSCode with DPC++, see the series of VSCode blogs at [here](https://codeplay.com/portal/blogs/2023/03/01/setting-up-c-development-with-visual-studio-code-on-ubuntu).
+
 ## Build instructions
 Ensure the CUDA samples **Common** directory is included in the makefile for the static library build. The INCLUDE_PATH is neccesary as the CUDA code pulls in various helper files, i.e., helper_functions.h, in order to compile successfully.
 
 The same CUDA samples **Common** directory needs also to be included in the VSCode project **StaticLibrarySYCLUsesCUDAKernels** to build the SYCL code with the CUDA static library. Edit the line "-I${workspaceFolder}/< change path to >/cuda-samples-nvidia/Common" in each of the build configurations in the project's task.json file.
 
 Next, build the static library which contains the CUDA kernels. 
-Using Microsoft's Visual Studio Code IDE (VSCode), open the VSCode project folder *VSCodeStaticLibraryMakeCUDAKernesDXTC*. Select the **task.json** file in the **.vscode** directory and use key shift+alt+b to use the default build task. The build task uses the makefile to build the static library in the **bin** directory.
+Using VSCode, open the VSCode project folder *VSCodeStaticLibraryMakeCUDAKernesDXTC*. Select the **task.json** file in the **.vscode** directory and use key shift+alt+b to use the default build task. The build task uses the makefile to build the static library in the **bin** directory.
 
 Once the static library is built, it is linked to the main program to enable the SYCL program to call upon the CUDA kernels. Open up a new project window using VSCode for the folder *VSCodeStaticLibraryUse*. Use shift+alt+b to select an **icpx** compiler build and hit return. The main project will build putting the executable in the bin directory.
 
