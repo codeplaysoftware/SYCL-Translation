@@ -1,3 +1,4 @@
 *.o
 *.a
+settings.json
 StaticLibrarySYCLUsesCUDAKernels/bin/DXTC*
