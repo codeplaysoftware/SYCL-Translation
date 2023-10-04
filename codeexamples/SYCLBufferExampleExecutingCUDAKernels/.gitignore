@@ -1,4 +1,4 @@
 *.a
 *.o
-StaticLibraryUse/.vscode/settings.json
+settings.json
 StaticLibraryUse/bin/CUDAInteropSYCLSimple*
