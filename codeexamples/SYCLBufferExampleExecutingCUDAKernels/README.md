@@ -7,6 +7,9 @@ All the CUDA kernels are put in a static library. Each kernel is wrapped by a C+
 
 The static library is linked to a SYCL project. The Facade wrapper functions are called from within a SYCL host_task() fucntion, which in turn is enqueued in a SYCL queue along with other SYCL kernels.
 
+## Microsoft's Visual Studio Code IDE (VSCode)
+VSCode orgranises each and every individual C++ project with a set of settings and configuration files. These files are contained in a hidden directory named **.vscode**. The configuration files **tasks.json** and **launch.json** are used to configure the building (generally compiling) of the project  followed by the debugging the program respectively. The other files like **settings.json** and **c_cpp_properties.json** are used by VSCode to inform it of your preferences and development environment. To learn more about how to use VSCode with DPC++, see the series of VSCode blogs at [here](https://codeplay.com/portal/blogs/2023/03/01/setting-up-c-development-with-visual-studio-code-on-ubuntu).
+
 ## Build instructions
 First we need to buid the static library which contains the CUDA kernels. 
 Using Microsoft's Visual Studio Code IDE (VSCode), open the VSCode project folder *VSCodeStaticLibraryMakeCUDAKernel*. Select the **task.json** file in the **.vscode** directory and use key shift+alt+b to use the default build task. The build task uses the makefile to build the static library in the **bin** directory.
