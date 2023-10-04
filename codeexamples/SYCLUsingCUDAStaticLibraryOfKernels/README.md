@@ -15,7 +15,7 @@ The static library is linked to a SYCL project. The Facade wrapper function is c
 VSCode orgranises each and every individual C++ project with a set of settings and configuration files. These files are contained in a hidden directory named **.vscode**. The configuration files **tasks.json** and **launch.json** are used to configure the building (generally compiling) of the project  followed by the debugging the program respectively. The other files like **settings.json** and **c_cpp_properties.json** are used by VSCode to inform it of your preferences and development environment. To learn more about how to use VSCode with DPC++, see the series of VSCode blogs at [here](https://codeplay.com/portal/blogs/2023/03/01/setting-up-c-development-with-visual-studio-code-on-ubuntu).
 
 ### VSCode and git
-As VSCode conguration files may have settings that are local to your development environment, you are likely to want to keep them, but not likely want them to be staged to be commited and so pushed up stream, nor have git overwrite your local settings.
+As VSCode configuration files may have settings that are local to your development environment, you are likely to want to keep them, but not likely want them to be staged to be commited and so pushed up stream, nor have git overwrite your local settings.
 For the case of not wanting to push local changes, the git .gitignore file handles this. For case where local settings are to be kept you may want to do the following: 
 Perform a git stash, before getting the latest changes from the repository (by using git pull origin master or git rebase origin/master), and then merge your changes from the stash using git stash pop stash@{0}.
 
