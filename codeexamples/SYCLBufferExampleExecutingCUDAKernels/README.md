@@ -16,10 +16,23 @@ For the case of not wanting to push local changes, the git .gitignore file handl
 Perform a git stash, before getting the latest changes from the repository (by using git pull origin master or git rebase origin/master), and then merge your changes from the stash using git stash pop stash@{0}.
 
 ## Build instructions
+### Using VSCode
 First we need to buid the static library which contains the CUDA kernels. 
 Using Microsoft's Visual Studio Code IDE (VSCode), open the VSCode project folder *VSCodeStaticLibraryMakeCUDAKernel*. Select the **task.json** file in the **.vscode** directory and use key shift+alt+b to use the default build task. The build task uses the makefile to build the static library in the **bin** directory.
 
 Once the static library is built, it is linked to the main program to enable the SYCL program to call upon the CUDA kernels. Open up a new project window using VSCode for the folder *VSCodeStaticLibraryUse*. Use shift+alt+b to select an **icpx** compiler build and hit return. The main project will build putting the executable in the bin directory.
+
+### Configuring using CMake
+To configure and build both the static CUDA kernel library and link to the application, invoke CMake as follows:
+
+```
+mkdir build
+
+cd build
+
+cmake ..
+```
+The configuration and resultant application executable will be put in the CMAKE build directory StaticLibraryUse.
 
 ## Development environment
 Ubuntu 22.04 LTS \
@@ -28,4 +41,5 @@ NVIDIA CUDA Toolkit 12.0 \
 NVIDIA CUDA Samples Common directory for CUDA helper include files (/cuda-samples-nvidia/Common) \
 Compilers: NVIDIA's nvcc and Intel's icpx \
 Target device: NVIDIA GTX2060 \
-Development IDE: Microsoft VSCode + extensions: Microsoft C/C++ pack.
+Development IDE: Microsoft VSCode v1.82 + extensions: Microsoft C/C++ pack \
+CMake version 3.22.1.
