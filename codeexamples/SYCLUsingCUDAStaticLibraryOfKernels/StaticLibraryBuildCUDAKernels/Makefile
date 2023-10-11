@@ -10,6 +10,3 @@ all: build
 
 build:
 	$(MAKE) -C bin all
-
-	
-	
