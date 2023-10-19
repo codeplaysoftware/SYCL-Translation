@@ -93,7 +93,7 @@ int main( void )
         // dependency on other kernels' outputs or unless specifically synced.
         HelloFromCUDAKernel( q );
         VectorAdditionUsingSYCL( q, vecA, vecB, vecSumParallel );
-        //VectorAdditionUsingCUDA( q, vecSumParallel, vecB, vecA );
+        VectorAdditionUsingCUDA( q, vecSumParallel, vecB, vecA );
         VectorAdditionUsingSYCL( q, vecA, vecB, vecSumParallel );
     }
     catch( std::exception const &e ) 
@@ -103,7 +103,7 @@ int main( void )
     }
 
     // Print out the result of vector add
-    const int indices[] { 0, 1, 2, 3, (static_cast< int >( vecA.size() ) - 1) };
+    const int indices[] { 0, 1, 2, 3, vecSize - 1 };
     constexpr size_t indicesSize = sizeof( indices ) / sizeof( Data_t );
     for( int i = 0; i < indicesSize; i++ ) 
     { 
