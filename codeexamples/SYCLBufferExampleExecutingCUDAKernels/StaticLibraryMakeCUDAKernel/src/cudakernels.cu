@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-/**
+/*
  * CUDA Kernel Device code
  * Simple message to the stdout.
  */
@@ -9,7 +9,7 @@ __global__ void kernelHelloWorld()
   printf("Hello from the Static Library CUDA kernel project\n");
 }
 
-/**
+/*
  * CUDA Kernel Device code
  * Computes the vector addition of A and B into C. The 3 vectors have the same
  * number of elements numElements.
