@@ -21,7 +21,6 @@ typedef std::vector< Data_t > VectorInt_t;
 void StaticLibFnsCUDAKernel::HelloWorldFacade();
 cudaError_t StaticLibFnsCUDAKernel::KernelCUDAVectorAddFacade( const int vBlocksPerGrid, const int vThreadsPerBlock, const int *vpPtrAccA, const int *vpPtrAccB, int *vpPtrAccSum, const int vNElements );
 void HelloFromCUDAKernel( sycl::queue &vQ );
-void VectorInitialize( VectorInt_t &vVec, const Data_t vValue );
 void VectorAdditionUsingCUDA( sycl::queue &vQ, const VectorInt_t &vVecA, const VectorInt_t &vVecB, VectorInt_t &vVecSumParallel );
 void VectorAdditionUsingSYCL( sycl::queue &vQ, const VectorInt_t &vVecA, const VectorInt_t &vVecB, VectorInt_t &vVecSumParallel );
 
@@ -78,10 +77,9 @@ int main( void )
     std::cout << "Hello from this program." << std::endl;
     
     constexpr Data_t vecSize = 10000;
-    VectorInt_t vecA( vecSize ), vecB( vecSize ), vecSumParallel( vecSize );
-    VectorInitialize( vecA, 1 );
-    VectorInitialize( vecB, 1 );
-    VectorInitialize( vecSumParallel, 0 );
+    VectorInt_t vecA( vecSize, 1 );
+    VectorInt_t vecB( vecSize, 1 );
+    VectorInt_t vecSumParallel( vecSize, 0 );
     
     try
     {
@@ -95,7 +93,7 @@ int main( void )
         // dependency on other kernels' outputs or unless specifically synced.
         HelloFromCUDAKernel( q );
         VectorAdditionUsingSYCL( q, vecA, vecB, vecSumParallel );
-        VectorAdditionUsingCUDA( q, vecSumParallel, vecB, vecA );
+        //VectorAdditionUsingCUDA( q, vecSumParallel, vecB, vecA );
         VectorAdditionUsingSYCL( q, vecA, vecB, vecSumParallel );
     }
     catch( std::exception const &e ) 
@@ -123,11 +121,6 @@ int main( void )
     std::cout << "CUDA kernels interop with SYCL completed on device." << std::endl;
     
     return EXIT_SUCCESS;
-}
-
-void VectorInitialize( VectorInt_t &vVec, const Data_t vValue ) 
-{
-  for( size_t i = 0; i < vVec.size(); i++ ) vVec.at(i) = vValue;
 }
 
 // Function to enqueue a SYCL kernel to continue performing further additions
