@@ -1,7 +1,10 @@
-#include <iostream>
 // For the CUDA runtime routines (prefixed with "cuda_")
 #include <cuda_runtime.h>
 
+// Third party headers:
+#include <iostream>
+
+// In-house headers:
 #include "staticlibfnscudakernel.h"
 #include "cudakernels.cu"
 
@@ -26,6 +29,4 @@ namespace StaticLibFnsCUDAKernel
 
         return cudaGetLastError();
     }
-
-
 } // namespace StaticLibFnsCUDAKernel

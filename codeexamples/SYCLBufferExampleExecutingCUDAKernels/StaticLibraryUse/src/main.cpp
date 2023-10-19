@@ -1,13 +1,14 @@
 // SYCL or oneAPI toolkit headers:
 #include <sycl/sycl.hpp>
 
+// For the CUDA runtime routines (prefixed with "cuda_")
+#include <cuda_runtime.h>
+
 // Third party headers:
 #include <iostream>
 #include <vector>
 #include <iostream>
 #include <string>
-// For the CUDA runtime routines (prefixed with "cuda_")
-#include <cuda_runtime.h>
 
 // In-house headers:
 #include "staticlibfnscudakernel.h"
