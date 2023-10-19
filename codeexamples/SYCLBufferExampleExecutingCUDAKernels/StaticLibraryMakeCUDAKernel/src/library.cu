@@ -1,12 +1,12 @@
-// For the CUDA runtime routines (prefixed with "cuda_")
-#include <cuda_runtime.h>
+// Local headers:
+#include "staticlibfnscudakernel.h"
+#include "cudakernels.cu"
 
 // Third party headers:
 #include <iostream>
 
-// In-house headers:
-#include "staticlibfnscudakernel.h"
-#include "cudakernels.cu"
+// For the CUDA runtime routines (prefixed with "cuda_")
+#include <cuda_runtime.h>
 
 namespace StaticLibFnsCUDAKernel
 {
