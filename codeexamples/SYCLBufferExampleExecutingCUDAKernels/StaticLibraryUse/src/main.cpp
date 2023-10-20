@@ -115,7 +115,7 @@ int main( void )
         std::cout << "[" << j << "]: " << vecA[j] << " + " << vecB[j] << " = " << vecSumParallel[j] << "\n";
     }
 
-    // Tidy up - release resources
+    // Tidy up - release resources (yes these have a destructor to do this implicitly)
     vecA.clear();
     vecB.clear();
     vecSumParallel.clear();
