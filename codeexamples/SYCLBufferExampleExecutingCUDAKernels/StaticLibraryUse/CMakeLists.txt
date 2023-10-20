@@ -65,7 +65,6 @@ set_target_properties(${TARGET_NAME} PROPERTIES COMPILE_FLAGS "${COMPILE_FLAGS}"
 set_target_properties(${TARGET_NAME} PROPERTIES LINK_FLAGS "${COMPILE_LINK_FLAGS}")
 target_link_libraries(${TARGET_NAME} StaticLibOfFnsCUDAKernelcmake_d)
 add_dependencies(${TARGET_NAME} StaticLibCudaKernels)
-add_custom_target(cpu-gpu DEPENDS ${TARGET_NAME})
 ## [add_and_link]
 
 ## [main]
