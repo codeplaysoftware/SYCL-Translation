@@ -88,7 +88,7 @@ int main( void )
         
         std::cout << "Running on device: " << q.get_device().get_info< sycl::info::device::name >() << "\n";
 
-        // Note the following kernels are not necessarily executed in the order show here.
+        // Note the following kernels are not necessarily executed in the order shown here.
         // Kernels can execute out of order (asynchronous) if the call graph does not see any 
         // dependency on other kernels' outputs or unless specifically synced.
         HelloFromCUDAKernel( q );
