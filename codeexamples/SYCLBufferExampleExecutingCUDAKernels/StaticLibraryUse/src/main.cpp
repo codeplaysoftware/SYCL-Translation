@@ -82,7 +82,7 @@ int main( void )
     VectorInt_t vecSumParallel( vecSize, 0 );
     
     try
-    {
+    { 
         const auto deviceSelector = sycl::default_selector_v;
         sycl::queue q( deviceSelector, exception_handler );
         
@@ -100,7 +100,8 @@ int main( void )
     }
     catch( std::exception const &e ) 
     {
-        std::cout << "An exception is caught while computing on device.\n";
+        std::cout << "An exception caught while computing on the device.\n";
+        std::cout << "Caught SYCL exception: " << e.what() << "\n";
         std::terminate();
     }
 
