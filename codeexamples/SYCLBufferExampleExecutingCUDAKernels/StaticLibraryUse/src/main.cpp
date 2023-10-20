@@ -71,7 +71,7 @@ class KernelSYCLVectorAdd
     AccessorWrite_t m_accSum;
 };
     
-// The program that enqueues CUDA kernels alongside SYCL kernels
+// The program that enqueues CUDA kernels along side SYCL kernels
 int main( void )
 {
     std::cout << "Hello from this program." << std::endl;
