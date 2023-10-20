@@ -14,8 +14,8 @@
 #include <string>
 
 // Typedefs:
-typedef int Data_t;
-typedef std::vector< Data_t > VectorInt_t; 
+using Data_t = int;
+using VectorInt_t = std::vector< Data_t >; 
 
 // Forward declarations:
 void StaticLibFnsCUDAKernel::HelloWorldFacade();
