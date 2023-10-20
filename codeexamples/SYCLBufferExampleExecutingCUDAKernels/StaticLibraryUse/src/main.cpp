@@ -153,7 +153,7 @@ void VectorAdditionUsingSYCL( sycl::queue &vQ, const VectorInt_t &vVecA, const V
         // executes the kernel.
         //    1st parameter is the number of work items.
         //    2nd parameter is the kernel, a functor class that specifies what to do per work item. 
-        // SYCL supports unnamed kernels by default.
+        // By default SYCL uses unnamed kernels. This example is using a nameed lamda 'KernelSYCLVectorAdd'.
         vH.parallel_for( rngVecItems, KernelSYCLVectorAdd( accA, accB, accSum ) );
     });
 
@@ -166,7 +166,7 @@ void HelloFromCUDAKernel( sycl::queue &vQ )
 {
     vQ.submit( [&]( sycl::handler &vH ) 
     { 
-        vH.host_task( [=]( /* A no interop_handle can be specified if backend interoperability is not required */ ) 
+        vH.host_task( [=]( /* No interop_handle needs to passed in if the backend interoperability is not required */ ) 
         {
             StaticLibFnsCUDAKernel::HelloWorldFacade();
         });
@@ -221,7 +221,7 @@ void VectorAdditionUsingCUDA( sycl::queue &vQ, const VectorInt_t &vVecA, const V
                 rawHostPtrAccA, rawHostPtrAccB, rawHostPtrAccSum, vVecA.size() );
             if( err != cudaSuccess )  
             { 
-                fprintf( stderr, "Failed to launch KernelCUDAVectorAddFacade (error code %s)!\n", cudaGetErrorString( err ) );
+                std::cerr << "Failed to launch KernelCUDAVectorAddFacade (error code " << cudaGetErrorString( err ) << ")!\n";
             }           
         });
     });
