@@ -89,8 +89,10 @@ int main( void )
         std::cout << "Running on device: " << q.get_device().get_info< sycl::info::device::name >() << "\n";
 
         // Note the following kernels are not necessarily executed in the order shown here.
-        // Kernels can execute out of order (asynchronous) if the call graph does not see any 
-        // dependency on other kernels' outputs or unless specifically synced.
+        // Kernels are always asynchronous. However, they only execute out of order if the 
+        // call graph does not see any dependencies between the kernels, i.e., one kernel
+        // depends on the results of another kernel to continue, or unless 
+        // specifically synced. A queue's properties can also stop out of order exevution.
         HelloFromCUDAKernel( q );
         VectorAdditionUsingSYCL( q, vecA, vecB, vecSumParallel );
         VectorAdditionUsingCUDA( q, vecSumParallel, vecB, vecA );
