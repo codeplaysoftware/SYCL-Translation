@@ -18,9 +18,9 @@ Perform a git stash, before getting the latest changes from the repository (by u
 ## Build instructions
 ### Using VSCode
 First we need to buid the static library which contains the CUDA kernels. 
-Using Microsoft's Visual Studio Code IDE (VSCode), open the VSCode project folder *VSCodeStaticLibraryMakeCUDAKernel*. Select the **task.json** file in the **.vscode** directory and use key shift+alt+b to use the default build task. The build task uses the makefile to build the static library in the **bin** directory.
+Using Microsoft's Visual Studio Code IDE (VSCode), open the VSCode project folder *StaticLibraryMakeCUDAKernel*. Select the **task.json** file in the **.vscode** directory and use key shift+alt+b to use the default build task. The build task uses the makefile to build the static library in the **bin** directory.
 
-Once the static library is built, it is linked to the main program to enable the SYCL program to call upon the CUDA kernels. Open up a new project window using VSCode for the folder *VSCodeStaticLibraryUse*. Use shift+alt+b to select an **icpx** compiler build and hit return. The main project will build putting the executable in the bin directory.
+Once the static library is built, it is linked to the main program to enable the SYCL program to call upon the CUDA kernels. Open up a new project window using VSCode for the folder *StaticLibraryUse*. Use shift+alt+b to select an **icpx** compiler build and hit return. The main project will build putting the executable in the bin directory.
 
 ### Configuring using CMake
 To configure and build both the static CUDA kernel library and link to the application, invoke CMake as follows:
