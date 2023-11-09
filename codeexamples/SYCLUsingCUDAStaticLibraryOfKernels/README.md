@@ -35,5 +35,5 @@ Intel oneAPI Base Toolkit 2023.1 + CUDA Plugin 2023.1 (setenvars.sh is active) \
 NVIDIA CUDA Toolkit 12.0 \
 NVIDIA CUDA Samples Common directory for CUDA helper include files (/cuda-samples-nvidia/Common) \
 Compilers: NVIDIA's nvcc and Intel's icpx \
-Target device: NVIDIA GTX2060 \
+Target device: NVIDIA GTX 2060 \
 Development IDE: Microsoft VSCode + extensions: Microsoft C/C++ pack.
