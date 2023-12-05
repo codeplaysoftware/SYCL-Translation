@@ -1,0 +1,4 @@
+*.a
+*.o
+settings.json
+StaticLibraryUse/bin/CUDAInteropSYCLSimple*
