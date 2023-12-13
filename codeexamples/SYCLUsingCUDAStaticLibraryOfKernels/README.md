@@ -19,15 +19,78 @@ As VSCode configuration files may have settings that are local to your developme
 For the case of not wanting to push local changes, the git .gitignore file handles this. For case where local settings are to be kept you may want to do the following: 
 Perform a git stash, before getting the latest changes from the repository (by using git pull origin master or git rebase origin/master), and then merge your changes from the stash using git stash pop stash@{0}.
 
-## Build instructions
-Ensure the CUDA samples **Common** directory is included in the makefile for the static library build. The INCLUDE_PATH is neccesary as the CUDA code pulls in various helper files, i.e., helper_functions.h, in order to compile successfully.
+## VSCode project build instructions
+Both the sub-projects require access to the NVIDIA helper header files in the NVIDIA cuda-samples-nvidia ```Common``` directory (which contained the original NVIDIA CUDA ```5_Domain_Specific/dxtc``` project). Ensure the CUDA samples **Common** directory is included in the makefile for the static library build. The INCLUDE_PATH is neccesary as the CUDA code pulls in various helper files, i.e., helper_functions.h, in order to compile successfully.
 
-The same CUDA samples **Common** directory needs also to be included in the VSCode project **StaticLibrarySYCLUsesCUDAKernels** to build the SYCL code with the CUDA static library. Edit the line "-I${workspaceFolder}/< change path to >/cuda-samples-nvidia/Common" in each of the build configurations in the project's task.json file.
+The same CUDA samples **Common** directory also needs to be included in the VSCode project **StaticLibrarySYCLUsesCUDAKernels** to build the SYCL code with the CUDA static library. Edit the line "-I${workspaceFolder}/< change path to >/cuda-samples-nvidia/Common" in each of the build configurations in the project's task.json file. Similarly, the VSCode ```.vscode/c_cpp_properties.json``` files for each project require the path to the helper files. For example:
+```
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../../cuda-samples-nvidia/Common",  <=== change this line
+                "/usr/local/cuda-12.0/targets/x86_64-linux/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/local/cuda/bin/nvcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}
+```
 
 Next, build the static library which contains the CUDA kernels. 
 Using VSCode, open the VSCode project folder *VSCodeStaticLibraryMakeCUDAKernesDXTC*. Select the **task.json** file in the **.vscode** directory and use key shift+alt+b to use the default build task. The build task uses the makefile to build the static library in the **bin** directory.
 
 Once the static library is built, it is linked to the main program to enable the SYCL program to call upon the CUDA kernels. Open up a new project window using VSCode for the folder *VSCodeStaticLibraryUse*. Use shift+alt+b to select an **icpx** compiler build and hit return. The main project will build putting the executable in the bin directory.
+
+## Configuring the build using CMake
+
+For each sub-project, locate the CMakelist.txt in each and modify the CMake variable ```CUDA_TOOLKIT_HELPER_FILES``` to point to where you have installed the NVIDIA cuda-samples-nvidia ```Common``` directory (which contained the original NVIDIA CUDA ```5_Domain_Specific/dxtc``` project). This will provide access to and so include the necessary helper header files to enable a successful build.
+
+To configure and build both the static CUDA kernel library and link to the application, do the following:
+
+```
+mkdir build
+cd build
+cmake ..
+make
+```
+
+The configuration and resultant application executable ```CUDAInteropSYCLUSMSimple_d``` will be put in the CMake ```build``` directory build/StaticLibrarySYCLUsesCUDAKernels.
+
+The application requires access to the image file ```teapot512_std.ppm``` to operate as expected. Once the CMake and make have completed successfully, copy the folder ```StaticLibrarySYCLUsesCUDAKernels/data``` to the CMake build directory. For example:
+```
+cd build/StaticLibrarySYCLUsesCUDAKernels
+cp -r ../../StaticLibrarySYCLUsesCUDAKernels/data ..
+``` 
+The application can now be executed.
+
+## Application results
+Once the application has been successfully built, on its execution the output should be similar to:
+```
+./CUDAInteropSYCLUSMSimple_d Starting...
+Running on device: NVIDIA GeForce RTX 2060
+
+Using image: ././../data/teapot512_std.ppm 
+Image Loaded '././../data/teapot512_std.ppm', w:512 x h:512 pixels
+
+Running DXT Compression on 512 x 512 image...
+
+16384 Blocks, 64 Threads per Block, 1048576 Threads in Grid...
+
+dxtc, Throughput = 120.5814 MPixels/s, Time = 0.00217 s, Size = 262144 Pixels, NumDevsUsed = 1, Workgroup = 64
+
+Checking accuracy...
+RMS(reference, result) = 0.000000
+
+Test passed
+```
 
 ## Development environment
 Ubuntu 22.04 LTS \
@@ -35,5 +98,6 @@ Intel oneAPI Base Toolkit 2023.1 + CUDA Plugin 2023.1 (setenvars.sh is active) \
 NVIDIA CUDA Toolkit 12.0 \
 NVIDIA CUDA Samples Common directory for CUDA helper include files (/cuda-samples-nvidia/Common) \
 Compilers: NVIDIA's nvcc and Intel's icpx \
-Target device: NVIDIA GTX2060 \
-Development IDE: Microsoft VSCode + extensions: Microsoft C/C++ pack.
+Target device: NVIDIA GTX 2060 \
+Development IDE: Microsoft VSCode + extensions: Microsoft C/C++ pack \
+CMake 3.22.1.
